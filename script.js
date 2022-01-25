@@ -27,3 +27,34 @@ function toUnderscore(str) {
 }
 
 console.log(toUnderscore(1));
+
+// 82. Maximum Contiguous Sum - 5kyu
+/* Given an unsorted array of integer values, find the maximum positive sum of any contiguous range within the array.
+
+An array containing only negative values can return 0. Your solution should be efficient enough to not throw a timeout exception.
+
+Example:
+maxContiguousSum([3, -4, 8, 7, -10, 19, -3]); // returns 24
+maxContiguousSum([-8, -10, -12, -2, -3, 5]); // returns 5
+Visual example:
+[3, -4, 8, 7, -10, 19, -3]
+       |_____________|
+             ||
+             \/
+             24 */
+
+function maxContiguousSum(arr) {
+    let max = arr[0];
+
+    let total = 0;
+
+    for (let i = 0; i < arr.length; i++) {
+        total += arr[i];
+        if (total <= 0) total = 0;
+        if (total > max) max = total;
+    }
+    return max;
+}
+
+console.log(maxContiguousSum([3, -4, 8, 7, -10, 19, -3]));
+console.log(maxContiguousSum([-8, -10, -12, -2, -3, 5]));
