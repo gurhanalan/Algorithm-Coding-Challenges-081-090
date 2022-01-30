@@ -237,3 +237,49 @@ function sortArray2(array) {
 }
 
 console.log(sortArray2([5, -3, 2, 8, -1, 4]));
+
+// 87.  Is a number prime? - 6kyu - codewars
+
+/* Define a function that takes one integer argument and returns logical value true or false depending on if the integer is a prime.
+
+Per Wikipedia, a prime number (or a prime) is a natural number greater than 1 that has no positive divisors other than 1 and itself.
+
+Requirements
+You can assume you will be given an integer input.
+You can not assume that the integer will be only positive. You may be given negative numbers as well (or 0).
+NOTE on performance: There are no fancy optimizations required, but still the most trivial solutions might time out. Numbers go up to 2^31 (or similar, depends on language version). Looping all the way up to n, or n/2, will be too slow. */
+
+function isPrime(num) {
+    // check for 1 , 0 and negative nums
+    if (num <= 1) return false;
+
+    // make an array of prime numbers till the num
+    const arrPrimes = [2];
+    let i = 2;
+    while (i <= num) {
+        if (arrPrimes.every((el) => i % el !== 0)) arrPrimes.push(i);
+
+        i++;
+    }
+
+    return arrPrimes.includes(num);
+}
+
+// More efficient
+function isPrime2(num) {
+    // check for 1 and 0
+    if (num <= 1) return false;
+
+    // make an array of prime numbers till the num
+    const arrPrimes = [2];
+    let i = 2;
+    //  decreasing the complexity of the algorithm from O(n) to O(sqrt(n))
+    while (i <= Math.sqrt(num)) {
+        if (num % i === 0) return false;
+
+        i++;
+    }
+    return true;
+}
+
+console.log(isPrime2(5099));
