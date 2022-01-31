@@ -283,3 +283,34 @@ function isPrime2(num) {
 }
 
 console.log(isPrime2(5099));
+
+// 88. Break camelCase - 6 kyu - codewars
+/* Complete the solution so that the function will break up camel casing, using a space between words.
+
+Example
+"camelCasing"  =>  "camel Casing"
+"identifier"   =>  "identifier"
+""             =>  ""
+ */
+
+function solution(string) {
+    return string.match(/(^[a-z]+)|[A-Z][a-z]+/g).join(" ");
+}
+
+// Shorter solution
+function solution2(string) {
+    return string.replace(/([A-Z])/g, " $1");
+}
+//  Without using Regex grouping
+const solution3 = (string) => string.replace(/[A-Z]/g, " $&");
+
+// Using function in replace
+function solution4(string) {
+    return string.replace(/[A-Z]/g, function (char) {
+        return " " + char;
+    });
+}
+function solution5(string) {
+    return string.replace(/[A-Z]/g, (char) => " " + char);
+}
+console.log(solution5("camelCasingTest"));
